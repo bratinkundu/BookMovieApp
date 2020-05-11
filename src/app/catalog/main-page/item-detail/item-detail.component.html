@@ -71,8 +71,20 @@
             <ul>
               <li>{{itemData.Genre}}</li>
               <li>Released on {{itemData.ReleaseDate}}</li>
+              <li>Checkout the <a [href]="itemData.TrailerLink" target="_blank">Trailer</a></li>
             </ul>
           </div>
+        </div>
+        <div class="d-flex flex-row">
+          <h6>Casts:</h6>
+          <ul>
+            <div *ngFor="let cast of itemData.Cast">
+              <li>
+                {{cast}}
+              </li>
+            </div>
+          </ul>
+          
         </div>
         <div class="d-flex flex-row mb-3">
           <h6 class="mb-0 pt-1 pr-3">Ratings:</h6>
