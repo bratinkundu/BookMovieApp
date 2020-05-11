@@ -1,0 +1,48 @@
+$blue: #5555ff;
+
+section{
+    background-color: #3e3e3e;
+    min-height: auto;
+    .cardback{
+        height: 100%;
+        .cardbody{
+            padding: 35px 30px;
+            background-color: #fff;
+            border-radius: 5px;
+            color: #000;
+            max-width: 90%;
+            min-width: 45%;
+            a{
+                color: rgba(0,0,0,.4);
+                font-size: 0.745rem;
+                text-decoration: none;
+                &:hover{
+                    color: rgba($color: $blue, $alpha: 0.6);
+                    text-decoration: none;
+                }
+            }
+            .cardtitle{
+                padding-bottom: 30px;
+                h4{
+                font-weight: 200;
+                font-size: 2.5rem;
+                text-align: center;
+                }
+               
+            }
+            .cardinput{
+                label{
+                    font-size: 0.8rem;
+                    margin-top: 10px;
+                    margin-bottom: 5px;
+                }
+                span{
+                    margin-top: 10px;
+                }
+                button{
+                    margin-top: 30px;
+                }
+            }
+        }
+    }
+}
