@@ -1,1 +1,42 @@
-<p>item-list works!</p>
+<div class="text-center mt-3">
+    <h3>Our Products</h3>
+    <small class="text-muted">{{allProducts.length}} Items</small>
+</div>
+
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>
+    <!-- <p class="text-center" *ngIf="search">Seach result for <b>{{search}}</b></p> -->
+  <div class="container mt-2">
+    <div  class="card-deck">
+      <div *ngFor="let item of allProducts" class="card border-0 text-center mt-4 mx-2"  [title]="item.Name">
+        <img  src="{{item.Image}}"  height="200" width="152" class="align-self-center " alt="Card image cap" [routerLink]="['/details','mobiles',item.id]">
+        <div class="card-body">
+          <h5 class="card-title" style="margin-bottom: 0;">{{item.Name}}</h5>
+          <small class="mb-3">by {{item.Writer || item.Director}}</small>
+          <p class="card-text mt-2" style="margin: 0;">{{item.Genre}}</p>
+          <div *ngIf="item.GoodReadsRatings">
+            <ngb-rating [(rate)]="item.GoodReadsRatings" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+            <h6>{{item.GoodReadsRatings}}/5 avg. rating</h6>
+          </div>
+          <div *ngIf="item.ImdbRating">
+            <ngb-rating [(rate)]="item.ImdbRating" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+            <h6>{{item.ImdbRating}}/10 avg. rating</h6>
+          </div>
+        </div>
+        <div class="custom-card-footer d-flex flex-row justify-content-center">
+            <h4>{{item.Amount | currency:'INR':'symbol-narrow':'2.0'}}</h4>
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+            <button type="button" class="btn btn-light mb-2" style="width: fit-content; align-self: center;"><i class="fas fa-info"></i> Details</button>
+            <button type="button" class="btn btn-success mb-2" style="width: fit-content; align-self: center;" [routerLink]="['/details',item.id]"> Add to Cart</button>      
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ 
