@@ -33,7 +33,8 @@ body {
 .table-shopping-cart .price {
     font-weight: bold;
     margin-right: 5px;
-    display: block
+    display: block;
+    width: fit-content;
 }
 
 .text-muted {

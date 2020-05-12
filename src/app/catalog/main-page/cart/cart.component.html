@@ -1,32 +1,34 @@
 <div class="container-fluid">
     <div class="row">
         <aside class="col-lg-9">
-            <div class="card">
-                <div class="table-responsive">
-                    <table class="table table-borderless table-shopping-cart">
+            <div class="card table-responsive">
+                <div>
+                    <table class="table table-responsive table-borderless table-shopping-cart">
                         <thead class="text-muted">
                             <tr class="small text-uppercase">
                                 <th scope="col">Product</th>
                                 <th scope="col" width="120">Quantity</th>
                                 <th scope="col" width="120">Price</th>
-                                <th scope="col" class="text-right d-none d-md-block" width="100"></th>
+                                <th scope="col" class="d-md-block" width="100"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr *ngFor="let item of cartItems">
                                 <td>
                                     <figure class="itemside align-items-center">
-                                        <div class="aside"><img src="" class="img-sm" style="width: initial;"></div>
-                                        <figcaption class="info"><b><a class="title text-dark" data-abc="true"></a></b></figcaption>
+                                        <div class="aside"><img src="{{item.Image}}" class="img-sm" style="width: initial;"></div>
+                                        <figcaption class="info"><b><a class="title text-dark" data-abc="true">{{item.Name}}</a></b></figcaption>
                                     </figure>
                                 </td>
                                  <td class="text-center"> 
-                                   
+                                   {{item.CartQuantity}}
                                 </td> 
                                 <td>
-                                    <div class="price-wrap"> <var class="price"></var> <small class="text-muted"> </small> </div>
+                                    <div class="price-wrap"> <var class="price">{{item.Amount | currency:'INR'}}</var> <small class="text-muted"> </small> </div>
                                 </td>
-                                <td class="text-right d-none d-md-block"> <button class="btn btn-light" data-abc="true" > Remove</button> </td>
+                                <td class="text-right d-md-block"> 
+                                    <button class="btn btn-light" data-abc="true" (click)="removeItem(item)" > Remove</button> 
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -47,15 +49,15 @@
                 <div class="card-body">
                     <dl class="dlist-align">
                         <dt>Total price:</dt>
-                        <dd class="text-right ml-3"></dd>
+                        <dd class="text-right ml-3">{{totalAmount | currency:'INR'}}</dd>
                     </dl>
                     <dl class="dlist-align">
                         <dt>Discount:</dt>
-                        <dd class="text-right text-danger ml-3"></dd>
+                        <dd class="text-right text-danger ml-3">{{totalDiscount | currency:'INR'}}</dd>
                     </dl>
                     <dl class="dlist-align">
                         <dt>Total:</dt>
-                        <dd class="text-right text-dark b ml-3"><strong></strong></dd>
+                        <dd class="text-right text-dark b ml-3"><strong>{{totalAmount - totalDiscount | currency:'INR'}}</strong></dd>
                     </dl>
                     <hr> 
                     <a href="#" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Make Purchase </a> 

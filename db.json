@@ -1,5 +1,5 @@
 {
-  "products":[
+  "products": [
     {
       "id": 1,
       "Category": "Book",
@@ -169,6 +169,22 @@
       "Image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ-VY5cjeq-HcRzfG3ofhcEhXFE06-Ev2xohkP9pY3MKNrkgRxp"
     }
   ],
-  "cart":[],
-  "wishlist":[]
+  "cart": [
+    {
+      "id": 1,
+      "Category": "Book",
+      "Name": "India After Gandhi",
+      "Genre": "Historical fiction",
+      "YearOfRelease": 2008,
+      "Amount": 568,
+      "Quantity": 4,
+      "Description": "Ramachandra Guha’s hugely acclaimed book tells the full story - the pain and the struggle, the humiliations and the glories - of the world’s largest and least likely democracy.",
+      "Writer": "Ramachandra Guha",
+      "GoodReadsRatings": 4,
+      "Pages": 960,
+      "Image": "https://images-na.ssl-images-amazon.com/images/I/A1XEQ4aLnuL.jpg",
+      "CartQuantity": 1
+    }
+  ],
+  "wishlist": []
 }

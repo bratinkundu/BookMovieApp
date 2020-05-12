@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ItemService} from '../../../shared/Services/item.service';
 import { ActivatedRoute} from '@angular/router';
+import { CartService } from 'src/app/shared/Services/cart.service';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-item-detail',
@@ -10,7 +12,8 @@ import { ActivatedRoute} from '@angular/router';
 export class ItemDetailComponent implements OnInit {
 
   itemData;
-  constructor(private route: ActivatedRoute,public itemservice : ItemService) { }
+  show = false;
+  constructor(private route: ActivatedRoute,public itemservice : ItemService, public cartservice : CartService) { }
 
   ngOnInit(): void {
     this.getItemDetails();
@@ -27,7 +30,17 @@ export class ItemDetailComponent implements OnInit {
   }
 
   addToCart(){
-    console.log(this.itemData)
+    this.itemData.CartQuantity = 1;
+   this.cartservice.addToCart(this.itemData).subscribe(
+       ()=>{
+        this.show = true;
+       },
+       error =>{
+         console.log('error!')
+       }
+     )
+   
+    //console.log(this.itemData)
   }
   
 }
