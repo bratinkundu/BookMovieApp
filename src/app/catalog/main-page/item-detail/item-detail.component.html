@@ -8,7 +8,7 @@
 </ng-template>
 
 
-<div *ngIf='itemData.Category ==="Book"' class="card mb-3 text-center" style="max-width: 100%; border: 0;">
+<div *ngIf='itemData' class="card mb-3 text-center" style="max-width: 100%; border: 0;">
   <div class="row">
     <div class="col-md-4">
       <img src="{{itemData.Image}}" height="300" width="122" class="card-img " style="width: initial;" alt="...">
@@ -17,8 +17,9 @@
       <div class="card-body">
         <h2 class="card-title ">{{ itemData.Name }}</h2>
         <div class="mb-2 d-flex flex-row">
-          <h6>Writer:</h6>
-          <p class="col-md-8 card-text text-justify">{{itemData.Writer}}</p>
+          <h6 *ngIf="itemData.Writer; else director">Writer:</h6>
+          <ng-template #director><h6>Director:</h6></ng-template>
+          <p class="col-md-8 card-text text-justify">{{itemData.Writer || itemData.Director}}</p>
         </div>
         <div class="mb-3 d-flex flex-row">
           <h6>About:</h6>
@@ -30,13 +31,15 @@
             <ul>
               <li>{{itemData.Genre}}</li>
               <li>Released on {{itemData.YearOfRelease}}</li>
-              <li>{{itemData.Pages}} pages</li>
+              <li *ngIf="itemData.Pages; else trailer">{{itemData.Pages}} pages</li>
+              <ng-template #trailer><li>Checkout the <a [href]="itemData.TrailerLink" target="_blank">Trailer</a></li></ng-template>
             </ul>
           </div>
         </div>
         <div class="d-flex flex-row mb-3">
           <h6 class="mb-0 pt-1 pr-3">Ratings:</h6>
-          <ngb-rating [(rate)]="itemData.GoodReadsRatings" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+          <ngb-rating *ngIf="itemData.GoodReadsRatings; else imdb" [(rate)]="itemData.GoodReadsRatings" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+          <ng-template  #imdb><ngb-rating [(rate)]="itemData.ImdbRating" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating></ng-template>
         </div>
         <div class="col-md-8 card-text d-flex flex-row justify-content-between">
           <h3>{{itemData.Amount | currency:'INR':'symbol-narrow':'2.0'}}</h3>
@@ -46,55 +49,3 @@
     </div>
   </div>
 </div>
-
-<!--Else Block-->
-
-<div *ngIf='itemData.Category ==="Movie"' class="card mb-3 text-center" style="max-width: 100%; border: 0;">
-  <div class="row">
-    <div class="col-md-4">
-      <img src="{{itemData.Image}}" height="300" width="122" class="card-img " style="width: initial;" alt="...">
-    </div>
-    <div class="col-md-8 text-left">
-      <div class="card-body">
-        <h2 class="card-title ">{{ itemData.Name }}</h2>
-        <div class="mb-2 d-flex flex-row">
-          <h6>Director:</h6>
-          <p class="col-md-8 card-text text-justify">{{itemData.Director}}</p>
-        </div>
-        <div class="mb-3 d-flex flex-row">
-          <h6>About:</h6>
-          <p class="col-md-8 card-text text-justify">{{itemData.Description}}</p>
-        </div>
-        <div class="d-flex flex-row">
-          <h6>Highlights:</h6>
-          <div class="col-md-8">
-            <ul>
-              <li>{{itemData.Genre}}</li>
-              <li>Released on {{itemData.ReleaseDate}}</li>
-              <li>Checkout the <a [href]="itemData.TrailerLink" target="_blank">Trailer</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="d-flex flex-row">
-          <h6>Casts:</h6>
-          <ul>
-            <div *ngFor="let cast of itemData.Cast">
-              <li>
-                {{cast}}
-              </li>
-            </div>
-          </ul>
-          
-        </div>
-        <div class="d-flex flex-row mb-3">
-          <h6 class="mb-0 pt-1 pr-3">Ratings:</h6>
-          <ngb-rating [(rate)]="itemData.ImdbRating" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
-        </div>
-        <div class="col-md-8 card-text d-flex flex-row justify-content-between">
-          <h3>{{itemData.Amount | currency:'INR':'symbol-narrow':'2.0'}}</h3>
-          <button type="button"  class="btn btn-warning"><i class="fas fa-shopping-cart"></i> ADD TO CART</button>
-        </div>
-      </div>
-    </div>
-  </div>
-

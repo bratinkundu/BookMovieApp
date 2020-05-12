@@ -25,5 +25,9 @@ export class ItemDetailComponent implements OnInit {
       )
     });
   }
+
+  addToCart(){
+    console.log(this.itemData)
+  }
   
 }
