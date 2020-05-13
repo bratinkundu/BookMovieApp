@@ -30,17 +30,56 @@ export class ItemDetailComponent implements OnInit {
   }
 
   addToCart(){
-    this.itemData.CartQuantity = 1;
-   this.cartservice.addToCart(this.itemData).subscribe(
-       ()=>{
+    var doExist : boolean;
+  this.cartservice.getItems().subscribe(
+    data =>{
+       doExist = this.hasItems(data);
+       if(doExist){this.incrementQuantity();}
+       else{this.addItemToCart()}
+    }
+  )
+  }
+
+   hasItems(data):boolean{
+    var value : boolean = false;
+    data.forEach(element => {
+     
+      if(element.id == this.itemData.id){
+        value = true
+      }
+    });
+    return value;
+    
+  }
+
+  incrementQuantity()
+  {
+    this.cartservice.getCartItem(this.itemData.id).subscribe(
+      data =>{
+        data['CartQuantity'] = data['CartQuantity']+1;
+        this.updateCart(data);
+      }
+    )
+  }
+
+  updateCart(data){
+    this.cartservice.editInCart(data).subscribe(
+      ()=>{
         this.show = true;
-       },
-       error =>{
-         console.log('error!')
-       }
+      }
+    )
+  }
+
+  addItemToCart(){
+    this.itemData.CartQuantity = 1;
+    this.cartservice.addToCart(this.itemData).subscribe(
+        ()=>{
+          this.show = true;
+        },
+        error =>{
+         console.log('error!') //try for a toast
+        }
      )
-   
-    //console.log(this.itemData)
   }
   
 }
