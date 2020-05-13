@@ -5,8 +5,9 @@
     <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
   </span>
 </ng-template>
-<div class="d-flex flex-row justify-content-end"  style="position: -webkit-sticky; top: 20px; right: 0;">
-  <ngb-toast *ngIf="show" delay="5000" autohide="true" (hide)="show =false" class="bg-success text-light text-center align-self-end" >Item added to cart</ngb-toast>
+
+<div style="position: fixed; top: 100px; right: 0; width: max-content; z-index: 1200;">
+  <ngb-toast *ngIf="show" delay="5000" autohide="true" (hide)="show =false" class="bg-success text-light text-center align-self-center" style="position: sticky; top: 0; right: 0;">Item added to cart</ngb-toast>
 </div>
 
 <div *ngIf='itemData' class="card mb-3 text-center" style="max-width: 100%; border: 0;">
