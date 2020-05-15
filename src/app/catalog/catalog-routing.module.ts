@@ -4,6 +4,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { ItemListComponent } from './main-page/item-list/item-list.component';
 import { ItemDetailComponent } from './main-page/item-detail/item-detail.component';
 import { CartComponent } from './main-page/cart/cart.component';
+import { WishlistComponent } from './main-page/wishlist/wishlist.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,7 @@ const routes: Routes = [
     component: MainPageComponent,
     children: [
       {
-        path: 'Products',
+        path: '',
         component: ItemListComponent,
       },
       {
@@ -24,8 +25,12 @@ const routes: Routes = [
         component: CartComponent
       },
       {
+        path: 'wishlist',
+        component: WishlistComponent
+      },
+      {
         path: '**',
-        redirectTo: '/Products',
+        redirectTo: '',
         pathMatch: 'full'
       }
     ]

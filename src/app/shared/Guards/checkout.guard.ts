@@ -16,7 +16,7 @@ export class CheckoutGuard implements CanActivateChild {
       return true;
     }
     else {
-      // this.router.navigate(['']);
+      this.router.navigate(['']);
       return false;
     }
   }

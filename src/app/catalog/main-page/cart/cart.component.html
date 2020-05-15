@@ -28,7 +28,7 @@
                                    {{item.CartQuantity}}
                                 </td> 
                                 <td>
-                                    <div class="price-wrap"> <var class="price">{{item.Amount | currency:'INR'}}</var> <small class="text-muted"> </small> </div>
+                                    <div class="price-wrap"> <var class="price">{{item.Amount * item.CartQuantity | currency:'INR'}}</var> <small class="text-muted">{{item.Amount | currency:'INR'}} per item </small> </div>
                                 </td>
                                 <td class="text-right d-md-block"> 
                                     <button class="btn btn-light" data-abc="true" (click)="removeItem(item)" > Remove</button> 

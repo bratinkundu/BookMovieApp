@@ -9,12 +9,19 @@ import { SummaryComponent } from '../app/order/order-page/summary/summary.compon
 const routes: Routes = [
   
   {
-    path: '',
+    path: 'catalog',
     loadChildren: () => import('../app/catalog/catalog.module').then(m => m.CatalogModule)
   },
   {
+    // Redirect Route
+    path: '',
+    redirectTo: '/catalog',
+    pathMatch: 'full'
+  },
+  {
     path:'order',
-    loadChildren : ()=> import('../app/order/order.module').then(m=>m.OrderModule)
+    loadChildren : ()=> import('../app/order/order.module').then(m=>m.OrderModule),
+    canActivateChild: [CheckoutGuard]
   }
 ];
 

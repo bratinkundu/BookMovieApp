@@ -8,7 +8,6 @@ export class LoginService {
   constructor() { }
 
   checkLogin(): boolean {
-    //return !!localStorage.getItem('OrderDetails');
-    return true;
+    return !!localStorage.getItem('OrderDetails');
   }
 }
