@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ItemService} from '../../../shared/Services/item.service'
 import { CartService } from 'src/app/shared/Services/cart.service';
+import { IpService } from 'src/app/shared/Services/ip.service';
+import { WishlistService } from 'src/app/shared/Services/wishlist.service';
 
 
 @Component({
@@ -14,17 +16,19 @@ export class ItemListComponent implements OnInit {
   show = false;
   pageSize = 6;
   p = 1;
-  constructor(public itemservice : ItemService, public cartservice:CartService) { }
+  ip;
+  wishlist;
+  constructor(public itemservice : ItemService, public cartservice:CartService, private ipservice : IpService, private wishlistservice : WishlistService) { }
 
   ngOnInit(): void {
     this.getAllProduct();
+    this.getIP();
   }
 
   getAllProduct(){
     this.itemservice.getAllProducts().subscribe(
       data =>{
         this.allProducts = data
-        console.log(data)
       }
     )
   }
@@ -80,6 +84,30 @@ export class ItemListComponent implements OnInit {
          console.log('error!') //try for a toast
         }
      )
+  }
+
+  getIP(){
+    return this.ipservice.getIP().subscribe(data=>{
+      this.ip = data;
+    })
+  }
+  addToWishlist(item){
+    this.wishlistservice.getWishListSpecific(this.ip.ip,item.id).subscribe(data =>{
+      console.log(data)
+       if(data.length > 0 ){
+         alert('Item already in wishlist')
+       }
+       else{
+          this.wishlist={
+            id : null,
+            productId : item.id,
+            ip:this.ip.ip
+          }
+          this.wishlistservice.addToWishList(this.wishlist).subscribe(()=>{
+            alert('Item added to Wishlist')
+          })
+       }
+    })
   }
 
 }

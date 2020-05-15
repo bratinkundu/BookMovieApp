@@ -90,10 +90,8 @@
 
         <div class="mb-3">
             <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
-            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
-                <div *ngIf="f.address.errors.required">Address is required</div>
-            </div>
+            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="" formControlName="address">
+            
         </div>
         <div class="mb-3">
             <label for="address2">UPI </label>

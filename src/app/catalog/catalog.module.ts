@@ -11,10 +11,11 @@ import {ItemListComponent} from './main-page/item-list/item-list.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; 
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { WishlistComponent } from './main-page/wishlist/wishlist.component';
 
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, MainPageComponent, CartComponent,ItemDetailComponent,ItemListComponent],
+  declarations: [NavbarComponent, FooterComponent, MainPageComponent, CartComponent,ItemDetailComponent,ItemListComponent,WishlistComponent],
   imports: [
     CommonModule,
     CatalogRoutingModule,

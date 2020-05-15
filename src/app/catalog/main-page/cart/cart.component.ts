@@ -32,7 +32,7 @@ export class CartComponent implements OnInit {
       upi : ['',Validators.required],
       city : ['',Validators.required],
       country : ['',Validators.required],
-      zip : ['',Validators.required, Validators.minLength(6)],
+      zip : ['',[Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -78,5 +78,5 @@ export class CartComponent implements OnInit {
     this.router.navigate(['../order/summary']);
   }
 
-  get f() { return this.billingForm.controls; }
+  
 }

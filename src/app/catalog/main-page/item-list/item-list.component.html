@@ -15,7 +15,6 @@
 </ng-template>
 
 
-    <!-- <p class="text-center" *ngIf="search">Seach result for <b>{{search}}</b></p> -->
   <div class="container mt-2">
     <div  class="card-deck">
       <div *ngFor="let item of allProducts |  paginate: { id: 'foo',
@@ -23,7 +22,11 @@
       currentPage: p }" class="card border-0 text-center mt-4 mx-2"  [title]="item.Name">
         <img  src="{{item.Image}}"  height="200" width="152" class="align-self-center " alt="Card image cap" [routerLink]="['/details','mobiles',item.id]">
         <div class="card-body">
-          <h5 class="card-title" style="margin-bottom: 0;">{{item.Name}}</h5>
+          <div class="d-flex flex-row justify-content-center">
+            <h5 class="card-title text-center mx-2" style="margin-bottom: 0;">{{item.Name}}</h5>
+            <button class="btn btn-outline-danger col-2" (click)="addToWishlist(item)"><i class="fas fa-heart"></i></button>
+          </div>
+          
           <small class="mb-3">by {{item.Writer || item.Director}}</small>
           <p class="card-text mt-2" style="margin: 0;">{{item.Genre}}</p>
           <div *ngIf="item.GoodReadsRatings">

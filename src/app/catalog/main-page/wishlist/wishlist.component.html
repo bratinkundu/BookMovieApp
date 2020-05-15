@@ -1,1 +1,59 @@
-<p>wishlist works!</p>
+<div class="text-center mt-3">
+    <h3>Our Products</h3>
+    <small class="text-muted">{{itemdata.length}} Items</small>
+</div>
+
+<div style="position: fixed; top: 70px; right: 0; width: max-content; z-index: 1200;">
+  <ngb-toast *ngIf="show" delay="5000" autohide="true" (hide)="show =false" class="bg-success text-light text-center align-self-center" style="position: sticky; top: 0; right: 0;">Item added to cart</ngb-toast>
+</div>
+
+
+<ng-template #t let-fill="fill">
+  <span class="star" [class.full]="fill === 100">
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>
+
+
+  <div class="container mt-2">
+    <div  class="card-deck">
+      <div *ngFor="let item of itemdata |  paginate: { id: 'foo',
+      itemsPerPage: pageSize,
+      currentPage: p };  let i = index" class="card border-0 text-center mt-4 mx-2"  [title]="item.Name">
+        <img  src="{{item.Image}}"  height="200" width="152" class="align-self-center " alt="Card image cap" [routerLink]="['/details','mobiles',item.id]">
+        <div class="card-body">
+          <div class="d-flex flex-row justify-content-center">
+            <h5 class="card-title text-center mx-2" style="margin-bottom: 0;">{{item.Name}}</h5>
+            <button class="btn btn-outline-danger col-2" (click)="deletefromWishlist(wishlist[i].id)"><i class="fas fa-trash-alt"></i></button>
+          </div>
+          
+          <small class="mb-3">by {{item.Writer || item.Director}}</small>
+          <p class="card-text mt-2" style="margin: 0;">{{item.Genre}}</p>
+          <div *ngIf="item.GoodReadsRatings">
+            <ngb-rating [(rate)]="item.GoodReadsRatings" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+            <h6>{{item.GoodReadsRatings}}/5 avg. rating</h6>
+          </div>
+          <div *ngIf="item.ImdbRating">
+            <ngb-rating [(rate)]="item.ImdbRating" [starTemplate]="t" [readonly]="true" [max]="10"></ngb-rating>
+            <h6>{{item.ImdbRating}}/10 avg. rating</h6>
+          </div>
+        </div>
+        <div class="custom-card-footer d-flex flex-row justify-content-center">
+            <h4>{{item.Amount | currency:'INR':'symbol-narrow':'2.0'}}</h4>
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+            <button type="button" class="btn btn-light mb-2" style="width: fit-content; align-self: center;" [routerLink]="['/catalog/details',item.id]"><i class="fas fa-info"></i> Details</button>
+            <button *ngIf="item.Quantity > 0" type="button" class="btn btn-success mb-2" style="width: fit-content; align-self: center;" (click)="addToCart(item)"> Add to Cart</button>  
+            <button *ngIf="item.Quantity === 0" type="button" class="btn btn-secondary mb-2" style="width: fit-content; align-self: center;" > Sold Out</button>  
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 text-center mt-3">
+    <pagination-controls class="p-0" id="foo" maxSize="5" directionLinks="true" (pageChange)="p = $event">
+    </pagination-controls>
+</div>
+
+
+
+ 

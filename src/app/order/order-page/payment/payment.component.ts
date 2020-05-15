@@ -32,6 +32,7 @@ export class PaymentComponent implements OnInit {
       this.cartservice.getItems().subscribe(
         data =>{
           this.cartItems = data
+          console.log(this.cartItems)
           this.cartItems.forEach(element => {
             this.cartservice.removeFromCart(element.id).subscribe()
           });  
