@@ -9,7 +9,8 @@ import { CartComponent } from './main-page/cart/cart.component';
 import {ItemDetailComponent} from './main-page/item-detail/item-detail.component';
 import {ItemListComponent} from './main-page/item-list/item-list.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; 
-import {ReactiveFormsModule} from '@angular/forms'
+import {ReactiveFormsModule} from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {ReactiveFormsModule} from '@angular/forms'
     CommonModule,
     CatalogRoutingModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [
     ItemService

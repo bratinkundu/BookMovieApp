@@ -12,6 +12,8 @@ export class ItemListComponent implements OnInit {
 
   allProducts = []
   show = false;
+  pageSize = 6;
+  p = 1;
   constructor(public itemservice : ItemService, public cartservice:CartService) { }
 
   ngOnInit(): void {

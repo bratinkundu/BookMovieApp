@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OrderPageComponent } from './order-page/order-page.component';
-import { SummaryComponent } from './order-page/summary/summary.component';
 import { PaymentComponent } from './order-page/payment/payment.component';
+import { SummaryComponent } from './order-page/summary/summary.component';
 
 
 const routes: Routes = [
@@ -11,9 +11,9 @@ const routes: Routes = [
     component: OrderPageComponent,
     children: [
       {
-        path: 'summary',
-        component: SummaryComponent
-      },
+         path: 'summary',
+         component: SummaryComponent
+       },
       {
         path: '',
         redirectTo: 'summary',

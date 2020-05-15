@@ -75,7 +75,7 @@ export class CartComponent implements OnInit {
     console.log(this.paymentservice.OrderInfo);
     this.paymentservice.set(this.paymentservice.OrderInfo);
     // this.paymentservice.remove();
-    this.router.navigate(['./order/summary']);
+    this.router.navigate(['../order/summary']);
   }
 
   get f() { return this.billingForm.controls; }
