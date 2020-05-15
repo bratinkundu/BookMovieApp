@@ -1,1 +1,32 @@
-<p>payment works!</p>
+<section>
+    <div class="container main flex-column d-flex">
+        <div class="cardBack">
+            <div class="container items d-flex justify-content-center align-items-center flex-column">
+                <h2 class="text-center">Please enter your OTP to finish the payment</h2>
+                
+                <form [formGroup]="otpform">
+                    
+                    <div class="form-group">
+                        <input type="text" class="form-control text-center" formControlName="otp" name="pin">
+                        <small *ngIf="errorflag" class="text-danger">You have entered wrong OTP!</small>
+                    </div>
+                </form>
+                <div class="row">
+                    <button class="btn btn-success" [disabled]="otpform.invalid" (click)="confirm()">
+                        Pay securely&nbsp; &nbsp;<i class="fa fa-lock" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="row mt-4">
+                    <p class="resend">Resend One-Time Password</p>
+                </div>
+                <div class="row mt-1">
+                    <button class="btn btn-sm btn-outline-danger" >Cancel</button>
+                </div>
+                <div style="width: max-content; z-index: 1200;">
+                    <ngb-toast *ngIf="show" delay="10000" autohide="true" (hide)="show =false" class="bg-success text-light text-center align-self-center" >Thank you for placing your order. Your Order Id is {{orderid}}</ngb-toast>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
